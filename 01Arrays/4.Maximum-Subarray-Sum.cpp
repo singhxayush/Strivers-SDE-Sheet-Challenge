@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 // #define int long long int
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
@@ -8,6 +9,7 @@ using namespace std;
     int tt;       \
     cin >> tt;    \
     while (tt--)
+
 
 #define dbg(x) cout << 'd' << 'b' << 'g' << '-' << '>' << x << endl;
 #define pr(x) cout << x << endl;
