@@ -16,24 +16,42 @@ using namespace std;
 #define uns unordered_set<ll>
 #define vll vector<ll>
 
-int maximumProfit(vector<int> &prices){
-    // Write your code here.
-    int n = prices.size();
-    vector<int> l(n), r(n);
-    int mi = INT_MAX, ma = INT_MIN;
-    for(int i=0; i<n; i++)
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{
+    //  Write your code here.
+
+    // next_permutation(permutation.begin(), permutation.end());
+    // for(auto x : permutation) cout<<x<<" "; cout<<"\n";
+    // return permutation;
+
+    // alternate soln(internal implementation of above one)
+    int idx = -1;
+    for(int i=n-2; i>=0; i--)
     {
-        mi = min(prices[i], mi);
-        l[i] = mi;
+        if(permutation[i] < permutation[i+1])
+        {
+            idx = i;
+            break;
+        }
     }
-    for(int i=n-1; i>=0; i--)
+    if(idx == -1)
     {
-        ma = max(prices[i], ma);
-        r[i] = ma;
+        reverse(permutation.begin(), permutation.end());
+        for(int i=0; i<n; i++) cout<<permutation[i]<<" "; cout<<"\n";
+        return permutation;
     }
-    int res = 0;
-    for(int i=0; i<n; i++) res = max(res, r[i]-l[i]);
-    return res;
+    for(int i = n-1; i>=0; i--)
+    {
+        if(permutation[i] > permutation[idx])
+        {
+            swap(permutation[i], permutation[idx]);
+            break;
+        }
+    }
+
+    reverse(permutation.begin()+idx+1, permutation.end());
+    for(int i=0; i<n; i++) cout<<permutation[i]<<" "; cout<<"\n";
+    return permutation;
 }
 
 void run_time_terror_()
@@ -41,8 +59,8 @@ void run_time_terror_()
     int n; cin>>n;
     vector<int> v(n);
     for(auto & x : v) cin>>x;
-    // cout<<
-     maximumProfit(v);
+    
+    nextPermutation(v, n);
 }
 
 int32_t main()
